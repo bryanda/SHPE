@@ -1,3 +1,83 @@
 page-home {
-
+  ion-toolbar {
+    ion-segment {
+      background-color: #FFFFFA;
+    }
+    ion-card {
+      position: relative;
+    }
+    img.headerImage {
+      position: relative;
+      width:100%;
+      height:auto;
+    }
+    h1.headerImageText {
+      position: absolute;
+      color:white;
+      margin: 0;
+      top: 60%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  ion-content {
+    ion-row {
+      ion-card.events {
+        ion-row {
+          ion-col.right {
+            text-align: right;
+          }
+        }
+      }
+      ion-card.schedules {
+        ion-row {
+          padding: 0;
+          align-items: center;
+          overflow: hidden;
+          position: relative;
+          ion-col.number {
+            align-items: center;
+            p {
+              color:white;
+              text-align: right;
+            }
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin:auto;
+            background-color: #474350;
+            height: 100%;
+            display: flex;
+            vertical-align: middle;
+          }
+          ion-col.time {
+            h2 {
+              color: #011627;
+              text-align: center;
+            }
+          }
+          ion-col.details {
+            padding-left: 10px;
+            border-left: thick double #474350;
+            h6 {
+              color: #011627;
+            }
+          }
+        }
+      }
+      ion-card.companies {
+        ion-row {
+          ion-col.company {
+            border-left: thick double #474350;
+          }
+          ion-col.infoButton {
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+  }
 }

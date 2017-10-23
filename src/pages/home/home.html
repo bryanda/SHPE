@@ -1,18 +1,84 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
+  <ion-toolbar style="padding:0px;">
+    <img class="headerImage" src="../../assets/imgs/ToolbarBanner.jpg" />
+    <h1 class="headerImageText">SHPE Region 5</h1>
+    <ion-segment mode="md" [(ngModel)]="tab">
+      <ion-segment-button value="schedule">
+        Schedule
+      </ion-segment-button>
+      <ion-segment-button value="events">
+        Events
+      </ion-segment-button>
+      <ion-segment-button value="companies">
+        Companies
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
+<ion-content class="had-header has-subheader">
+  <!-- HERE WE POPULATE EVENTS FROM DB -->
+  <!-- USERS CLICK EVENT AND IT TAKES THEM TO EVENT DETAILS -->
+  <div [ngSwitch]="tab">
+    <!-- if staff is selected -->
+    <ion-row *ngSwitchCase="'schedule'">
+      <ion-card class="itinerary" *ngFor="let item of Schedule; let i = index" class="schedules">
+        <ion-row>
+          <ion-col class="number" col-1>
+            <p>{{i + 1}}</p>
+          </ion-col>
+          <ion-col class="time" col-2>
+            <h2>
+            {{item.time}}
+          </h2>
+          </ion-col>
+          <ion-col class="details" col-9>
+            <h6>{{item.locationname}}</h6>
+            <h2><strong>{{item.title}}</strong></h2>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+    <!-- if events is selected -->
+    <ion-row *ngSwitchCase="'events'">
+      <ion-card *ngFor="let event of Events" class="events">
+        <img src="{{event.bannerURL}}" />
+          <ion-row>
+            <ion-col col-8>
+              <h3 ion-text><strong>{{event.title}}</strong></h3>
+            </ion-col>
+            <ion-col col-4 class="right">
+              <h6 ion-text>{{event.startdate}}</h6>
+            </ion-col>
+          </ion-row>
+      </ion-card>
+    </ion-row>
+    <!-- if companies is selected -->
+    <ion-row *ngSwitchCase="'companies'">
+      <ion-card *ngFor="let company of Companies" class="companies">
+        <ion-item style="margin:0;">
+          <ion-avatar item-start>
+            <img src="{{company.logo}}" />
+          </ion-avatar>
+          <ion-row>
+            <ion-col col-9 class="company">
+              <h2>{{company.name}}</h2>
+              <p>Email:&nbsp;{{company.email}}</p>
+            </ion-col>
+            <ion-col col-3 class="infoButton">
+              <button ion-button outline item-end icon-left clear>
+                  Info
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-card>
+    </ion-row>
+  </div>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
